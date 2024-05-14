@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package financialtracking;
+
+message Transaction {
+    string id = 1;
+    string description = 2;
+    float amount = 3;
+}
+
+message User {
+    string username = 1;
+    string password = 2;
+    string role = 3;
+}
+
+service FinancialTracker {
+    rpc SignUp(User) returns (User) {}
+    rpc Login(User) returns (User) {}
+    rpc AddTransaction(Transaction) returns (Transaction) {}
+    rpc ReadTransaction(TransactionId) returns (Transaction) {}
+    rpc UpdateTransaction(Transaction) returns (Transaction) {}
+    rpc DeleteTransaction(TransactionId) returns (Transaction) {}
+    rpc ReadAllTransactions(Empty) returns (stream Transaction) {}
+}
+
+message TransactionId {
+    string id = 1;
+}
+
+message Empty {}
